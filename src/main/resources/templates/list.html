@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Booking Form HTML Template</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
+
+	<!-- Bootstrap -->
+
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body style="background-image: url('/img/background.jpg')">
+<nav  th:fragment="navlink" class="navbar navbar-expand-lg navbar-light bg-light">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<a class="navbar-brand" href="#">Flight Booking</a>
+
+	<div class="navbar-expand" id="navbarTogglerDemo03">
+		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+			<li class="nav-item active">
+				<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/form">Add Flight</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link " href="#" tabindex="-1" >About Us</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link " href="#" tabindex="-1" >Contact</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<!-- Page Content -->
+<div class="container w-100" >
+
+	<div class="row">
+
+		<!-- Blog Entries Column -->
+		<div class="col-md-8">
+			<h1 class="my-4 pt-5">Flight List</h1>
+			<div th:each="flight: ${flights}" class="card mb-4">
+				<div th:if="${flight.pic} != null">
+					<img class="card-img-top" th:src="${flight.pic}" alt="Card image cap" >
+				</div>
+				<div class="card-body">
+					Flight number :<span th:text="${flight.flightNumber}"></span><br/>
+					Airline :<span th:text="${flight.airlineName}"></span><br/>
+					From :<span th:text="${flight.departure}"></span><br/>
+					To :<span th:text="${flight.arrive}"></span><br/>
+					Type:<span th:text="${flight.type}"></span><br/>
+					Price :<span th:text="${flight.price}"></span><br/>
+					Date:<span th:text="${flight.depDate}"></span><br/>
+					<a href="#" class="btn btn-primary">Read More &rarr;</a><br/>
+				</div>
+				<dr/><dr/>
+				<div class="row">
+					<div class="col-md-4">
+						<a style="margin: 50px" th:href="@{/update/{id}(id=${flight.id})}">Update</a>
+					</div>
+					<div class="col-md-4">
+						<a style="margin: 50px" th:href="@{/detail/{id}(id=${flight.id})}">Detail</a>
+					</div>
+					<div class="col-md-4">
+						<a style="margin: 50px" th:href="@{/delete/{id}(id=${flight.id})}">Delete</a>
+					</div>
+				</div>
+			</div>
+
+				<!-- Pagination -->
+			     <div class="">
+					 <ul class="pagination justify-content-center mb-4">
+					<li class="page-item">
+						<a class="page-link" href="#">&larr; Older</a>
+					</li>
+					<li class="page-item disabled">
+						<a class="page-link" href="#">Newer &rarr;</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+
+		<!-- Sidebar Widgets Column -->
+		<div class="col-md-4 " >
+
+			<!-- Search Widget -->
+			<div class="card my-4"  >
+				<h5 class="card-header">Search</h5>
+				<div class="card-body">
+					<form class="form-inline" th:action="@{/searchlist}" method="post">
+						<input type="text" name="search" class="form-control" placeholder="Search for...">
+						<span >
+                <button class="btn btn-secondary" type="submit" name="submit">Go!</button>
+              </span>
+					</form>
+				</div>
+			</div>
+
+			<!-- Categories Widget -->
+			<div class="card my-4">
+				<h5 class="card-header">Categories</h5>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-lg-6">
+							<ul class="list-unstyled mb-0">
+								<li>
+									<a href="#">Web Design</a>
+								</li>
+								<li>
+									<a href="#">HTML</a>
+								</li>
+								<li>
+									<a href="#">Freebies</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-lg-6">
+							<ul class="list-unstyled mb-0">
+								<li>
+									<a href="#">JavaScript</a>
+								</li>
+								<li>
+									<a href="#">CSS</a>
+								</li>
+								<li>
+									<a href="#">Tutorials</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Side Widget -->
+			<div class="card my-4">
+				<h5 class="card-header">Side Widget</h5>
+				<div class="card-body">
+					You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<!-- /.row -->
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>

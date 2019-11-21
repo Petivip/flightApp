@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>Booking Form HTML Template</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans:400" rel="stylesheet">
+
+	<!-- Bootstrap -->
+
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body style="background-image: url('/img/background.jpg')">
+<div th:replace="list::navlink"></div>
+
+<!-- Page Content -->
+<div class="container">
+
+	<div class="row">
+
+		<!-- Blog Entries Column -->
+		<div class="col-md-8">
+			<h1 class="my-4 pt-5">Flight Detail</h1>
+			<div style=" padding-left: 50px;margin-block: 0px"></div>
+			<div class="card" style="width: 38rem">
+				<img th:src="${flight.pic}" class="card-img-top" alt="...">
+				<div class="card-body">
+					Flight number: <span th:text="${flight.flightNumber}" ></span><br />
+					From : <span th:text="${flight.departure}" ></span><br />
+					To  : <span th:text="${flight.arrive}" ></span><br />
+					Date : <span th:text="${flight.depDate}" ></span><br />
+
+					<a th:href="@{/delete/{id}(id=${flight.id})}" class="btn btn-primary">Delete this message</a>
+				</div>
+			</div>
+		</div>
+			</div>
+
+
+		<!-- Sidebar Widgets Column -->
+		<div class="col-md-4 d-flex justify-content-end">
+
+			<!-- Search Widget -->
+			<div class="card my-4"  >
+				<h5 class="card-header">Search</h5>
+				<div class="card-body">
+					<form class="form-inline" th:action="@{/searchlist}" method="post">
+						<input type="text" name="search" class="form-control" placeholder="Search for...">
+						<span >
+                <button class="btn btn-secondary" type="submit" name="submit">Go!</button>
+              </span>
+					</form>
+				</div>
+			</div>
+
+			<!-- Categories Widget -->
+			<div class="card my-4">
+				<h5 class="card-header">Categories</h5>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-lg-6">
+							<ul class="list-unstyled mb-0">
+								<li>
+									<a href="#">Web Design</a>
+								</li>
+								<li>
+									<a href="#">HTML</a>
+								</li>
+								<li>
+									<a href="#">Freebies</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-lg-6">
+							<ul class="list-unstyled mb-0">
+								<li>
+									<a href="#">JavaScript</a>
+								</li>
+								<li>
+									<a href="#">CSS</a>
+								</li>
+								<li>
+									<a href="#">Tutorials</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Side Widget -->
+			<div class="card my-4">
+				<h5 class="card-header">Side Widget</h5>
+				<div class="card-body">
+					You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<!-- /.row -->
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
